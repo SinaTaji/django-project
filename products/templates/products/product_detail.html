@@ -1,0 +1,300 @@
+{% extends 'lay_out/layout.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+{% block title %}مشخصات | {{ products.title }}{% endblock %}
+{% block header_references %}
+    <link href="/static/lib/image_light_box/css/lightbox.css" rel="stylesheet"> {% endblock %}
+{% block footer_references %}
+    <script src="/static/lib/image_light_box/js/lightbox.js"></script>{% endblock %}
+{% block content %}
+    <section id="product_detail">
+        <div id="tamas">
+            <a href="tel:+989903376236">
+                <img src="/static/images/blog/Untitled.png" alt="" class="pulse-animation">
+            </a>
+        </div>
+        <div class="container">
+            <div class="row_detail">
+
+                <div class="product-image-section">
+                    <div class="view-product">
+                        {% if products.image %}
+                            <img alt="{{ products.title }}" src="{{ products.image.url }}" class="product-image" id="main-image">
+                        {% else %}
+                            <img src="/static/images/product-details/1.jpg" id="main-image">
+                        {% endif %}
+                        <a id="show_image_large" href="{{ products.image.url }}" data-lightbox='product-image'>
+                            <h3>بزرگنمایـی</h3></a>
+                    </div>
+                    <div id="similar-product" class="carousel-container">
+                        {% for gallery in product_gallery_group %}
+                            {% for img in gallery %}
+                                <div class="carousel-item">
+                                    {% thumbnail img.images "90x90" crop='center' as im %}
+                                        <a onclick="ShowLargeImage('{{ img.images.url }}')">
+                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                        </a>
+                                    {% endthumbnail %}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <h2 id="product_detail_short_description">
+                        {{ products.short_description }}
+                    </h2>
+                    <h4 id="product_detail_description">
+                        <details>
+                            <summary id="description_summary">برای نمایش توضیحات کامل کلیک کن ...</summary>
+                            {{ products.description }}
+                        </details>
+                    </h4>
+                </div>
+
+                <div class="product-info-section">
+
+                    <div class="product-information">
+                        <strong id="product_detail_title">{{ products.title }}</strong>
+
+                        {% if products.has_color %}
+                            <div class="color-selection">
+                            <label>انتخاب رنگ:</label>
+                            <div class="color-options-new">
+                                {% for color in object.colors.all %}
+                                    <label class="color-option-new">
+                                        <input type="radio" name="product-color" value="{{ color.id }}"
+                                               data-price="{{ color_prices|get_item:color.id }}" required>
+                                        <span class="color-box-new"
+                                              style="background-color: {{ color.hex_value }};"></span>
+                                        <span class="color-title-new">{{ color.title }}</span>
+                                    </label>
+                                {% endfor %}
+                            </div>
+                            <h3 id="color_chose">لطفا در انتخاب رنگ دقت بفرمایید </h3>
+                        {% else %}
+                            <div class="color-selection">
+
+                            <input type="hidden" id="default-color" name="product-color" value="default"
+                                   data-price="{{ products.price|int_comma }}" required>
+                        {% endif %}
+
+                        {% if products.side %}
+                            <div class="side-selection">
+                                <h2 id="side">انتخاب سمت </h2>
+                                <div class="side-options-new">
+                                    <label class="side-option-new">
+                                        <input type="radio" name="product-side" value="left" required>
+                                        <span class="side-custom-radio">چپ</span>
+                                    </label>
+                                    <label class="side-option-new">
+                                        <input type="radio" name="product-side" value="right" required>
+                                        <span class="side-custom-radio">راست</span>
+                                    </label>
+
+                                </div>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <div id="product_detail_price">
+                            قیمت : <span id="price_value">{{ object.price|int_comma }}</span>
+                        </div>
+                        <div>
+                            <label>تعداد :</label>
+                            <input type="number" min="1" value="1" id="product-count" class="search_box">
+                            <button onclick="GetProductId('{{ object.id }}')" type="button"
+                                    id="buy_button">
+                                <i class="fa fa-shopping-cart"></i>
+                                خرید
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="mojoodi">
+                            <h5><span id="mojodi"> موجودی :</span> در انبار موجود میباشد </h5>
+                            <h5><span id="brand"> برند :</span> {{ products.brand.title }} </h5>
+                        </div>
+                        <span class="socials-share share">
+                            <h5 id="tamas">سوالی داری یا مشاوره میخوای</h5>
+
+                        <div class="gpss">
+                            <a href="https://t.me/@khashayar_1370">
+                                <img src="/static/images/blog/telegram.png" alt="">تلگرام
+                            </a>
+                            <a href="https://eitaa.com/khashayar_1370" target="_blank">
+                                <img src="/static/images/blog/ita.png" alt="">ایتا
+                            </a>
+                            <a href="https://web.rubika.ir/#c=u0BI1oZ03d4c0014d776a06db29b2f77" target="_blank">
+                                <img src="/static/images/blog/rubika.png" alt="">روبیکا
+                            </a>
+                        </div>
+                            <br>
+                    </span>
+                        </div>
+                    </div>
+                    <div class="seller-info-section">
+                        <h2 id="product_detail_info">مشخصات بیشتر از {{ products.title }}  </h2>
+                        <div class="seller-information">
+                            <h3>محل نصب :
+                                {{ products.get_position_display }}
+                            </h3>
+                            <h3>جنس :
+                                {{ products.get_material_display }}
+                            </h3>
+                        </div>
+                        <h3 id="forcars">مناسب برای خودرو :
+                            {{ products.cars }}
+                        </h3>
+                        <h5 class="garanti fa fa-check-circle "> گارانتی اصالت و سلامت فیزیکی کالا </h5>
+                        <h5 id="garanti">ضمانت : {{ products.get_garanti_display }} </h5>
+                        <p id="bargasht" class="fa fa-warning"> درخواست مرجوع کردن کالا با دلیل "انصراف از خرید" تنها در
+                            صورتی قابل تایید است که کالا در شرایط اولیه باشد (در صورت پلمپ بودن، کالا نباید باز شده
+                            باشد). </p>
+                        <div class="poshtibani">
+                            <img src="/static/images/blog/poshtibani.png">
+                            <h3>پشتیبانی عالی روز های کاری از ساعت 9 تا 20</h3>
+                        </div>
+                        <div class="poshtibani">
+                            <img src="/static/images/blog/asl.png">
+                            <h3>ضمانت اصل بودن کالا</h3>
+                        </div>
+                        <div class="poshtibani">
+                            <img src="/static/images/blog/bazgasht.png">
+                            <h3>امکان بازگشت کالا</h3>
+                        </div>
+                        <div class="poshtibani">
+                            <img src="/static/images/blog/post.png">
+                            <h3>ارسال سریع و امن به سرار کشور</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="category-section">
+                    <span>
+                        <h2 id="tag_products_suggest">شاید نیازت بشه</h2>
+                    </span>
+            <div class="category-slider" id="suggest_item_slider">
+                <div class="category-container">
+                    {% for item in suggestion %}
+                        <div class="category-items">
+                            <a href="{{ item.get_absolute_url }}">
+                                {% thumbnail item.image "220x220" as im %}
+                                    <img alt="{{ item.title }}" src="{{ im.url }}" width="{{ im.width }}"
+                                         height="{{ im.height }}">
+                                {% endthumbnail %}
+                                <div class="titleh">
+                                    <h2>{{ item.title }}</h2>
+                                </div>
+                                {% if item.colors.all %}
+                                    <h4 id="colors_product_home">رنگ های موجود</h4>
+                                    <div id="product_color">
+                                        {% for color in item.colors.all %}
+                                            <span class="color-box" data-color="{{ color.hex_value }}"
+                                                  title="{{ color.title }}"></span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div id="no-color"><h4>محصول فاقد رنگ بندی میباشد</h4></div>
+                                {% endif %}
+
+                                <h3 id="product_price"> {{ item.price|int_comma }}</h3></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="replay-box" id="comment_form">
+            {% if request.user.is_authenticated %}
+                <div class="row">
+
+                    <h2>نظـر خود را بنویسیـد</h2>
+                    <div class="text-area">
+                        <input type="hidden" id="parent_id" value="">
+                        <div class="blank-arrow">
+                            <label>متن پیام</label>
+                        </div>
+                        <span>*</span>
+                        <form id="commentForm">
+                            <textarea name="text" rows="11" id="commentText"></textarea>
+                            <input type="hidden" name="product" id="product_id"
+                                   value="{{ products.id }}">
+                            <input type="hidden" name="parent" id="parent_id" value="">
+                            <button type="button" class="btn btn-primary"
+                                    onclick="sendProductComment()">ارسـال نظـر
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div id="successMessage" style="display:none;" class="alert alert-success">نظر شما با موفقیت
+                    ثبت شد و پس از باز بینی منتشر خواهد شد
+                </div>
+                <div id="errorMessage" style="display:none;" class="alert alert-danger">خطایی رخ داد. لطفاً
+                    دوباره امتحان کنید.
+                </div>
+            {% else %}
+                <div class="alert alert-warning">
+                    برای درج نظر می بایست <a href="{% url 'login_page' %}">لاگین</a> کنید
+                </div>
+            {% endif %}
+            <div class="response-area" id="comments_area">
+                <h2 id="comment_count"> نظرات ({{ comments_count }})</h2>
+                <ul class="media-list">
+                    {% for comment in comments %}
+                        <li class="media" id="single_comment_box_{{ comment.id }}">
+                            {% if comment.user.avatar %}
+                                <a class="pull-right" href="#">
+                                    {% thumbnail comment.user.avatar "121x86" quality=70 as im %}
+                                        <img class="media-object" src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                </a>
+                            {% else %}
+                                <a class="pull-right" href="#">
+                                    <img class="media-object" src="/static/images/blog/Customer.jpg" alt="">
+                                </a>
+                            {% endif %}
+                            <div class="media-body">
+                                <ul class="sinlge-post-meta">
+                                    <li><i class="fa fa-user"></i>{{ comment.user }}</li>
+                                    <li><i class="fa fa-clock-o"></i> {{ comment.create_date | time }}</li>
+                                    <li><i class="fa fa-calendar"></i> {{ comment.create_date|date2jalali }}
+                                    </li>
+                                </ul>
+                                <p>{{ comment.text }}</p>
+                                <a class="btn btn-primary" onclick="filleParentId({{ comment.id }})"><i
+                                        class="fa fa-reply"></i>پاسـخ</a>
+                            </div>
+                        </li>
+                        {% for sub_comment in comment.productcomment_set.all %}
+                            <li class="media second-media" id="single_comment_box_{{ sub_comment.id }}">
+                                {% if sub_comment.user.avatar %}
+                                    <a class="pull-right" href="#">
+                                        {% thumbnail sub_comment.user.avatar "121x86" quality=70 as im %}
+                                            <img class="media-object" src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    </a>
+                                {% else %}
+                                    <a class="pull-right" href="#">
+                                        <img class="media-object" src="/static/images/blog/Customer.jpg" alt="">
+                                    </a>
+                                {% endif %}
+                                <div class="media-body">
+                                    <ul class="sinlge-post-meta">
+                                        <li><i class="fa fa-user"></i>{{ sub_comment.user }}</li>
+                                        <li><i class="fa fa-clock-o"></i> {{ sub_comment.create_date | time }}
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-calendar"></i> {{ sub_comment.create_date|date2jalali }}
+                                        </li>
+                                    </ul>
+                                    <p>{{ sub_comment.text }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

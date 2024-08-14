@@ -1,0 +1,37 @@
+{% load poll_extras %}
+<div class="order-details">
+    <img src="/static/images/cart/faktor.png"><h3 id="faktor_id"> شماره فاکتور : ({{ current_order.id }})</h3>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>عنوان محصول</th>
+            <th>رنگ</th>
+            <th>جهت</th>
+            <th>قیمت</th>
+            <th>تعداد</th>
+            <th>قیمت کل</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for detail in order_details %}
+            <tr id="item-{{ forloop.counter }}">
+                <td>{{ detail.order.products.title }}</td>
+                <td>{% if detail.color %}{{ detail.color }}{% else %} - {% endif %}</td>
+                <td>{% if detail.order.side %}{{ detail.order.get_side_display }}{% else %} - {% endif %}</td>
+                <td>{{ detail.price | int_comma }} </td>
+                <td>{{ detail.order.count }}</td>
+                <td>{{ detail.order_total_price | int_comma }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="total-price">
+        مجموع : {{ total_price | int_comma }}
+    </div>
+    <div>
+        <h3>هزینه ارسال به عهده مشتری گرامی میباشد !</h3>
+    </div>
+    <span id="q_and_answer_linkk"> <img src="/static/images/blog/q_&_a.png"> <a
+            href="{% url 'q_and_answer_view' %}"> پرسش و پاسخ های متداول </a></span>
+</div>

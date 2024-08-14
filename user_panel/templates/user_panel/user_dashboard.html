@@ -1,0 +1,32 @@
+{% extends 'lay_out/layout.html' %}
+{% load thumbnail %}
+{% load render_partial %}
+{% block title %}پنل کاربری{% endblock %}
+{% block content %}
+    <div id="forms_container">
+        <div id="form-uii">
+            <form id="form">
+                {% if current_user.avatar %}
+                    {% thumbnail current_user.avatar "200x200" crop='center' as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+                {% else %}
+                    <img src="/static/images/home/main_logo.png" alt="">
+                {% endif %}
+                <div id="welcome-line-1">{{ current_user.username }}</div>
+                <div id="form-body">
+                    <div id="input-area">
+                        <div class="form-inp">
+                            {% csrf_token %}
+                            {{ form.first_name }}
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                </div>
+                <div id="panel-bottoms">
+                    {% render_partial 'user_panel.views.user_panel_mennu_component' %}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

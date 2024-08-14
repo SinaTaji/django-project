@@ -1,0 +1,22 @@
+{% load render_partial %}
+<div class="menu-filter">
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn fa fa-filter"> فیلتر</button>
+        <div id="myDropdown" class="dropdown-content">
+            <div class="first-filter">
+                <h2 class="f-title">دسته بندی محصولات</h2>
+                {% render_partial 'products.views.ProductCategoryComponent' %}
+            </div>
+            <div class="second-filter">
+                <h2 class="f-title">برنـد ها</h2>
+                {% render_partial 'products.views.ProductBrandsComponent' %}
+                <h2 class="f-title">خودرو ها</h2>
+                {% render_partial 'products.views.ProductCarsComponent' %}
+            </div>
+        </div>
+        <a onclick="sortProductsByPrice()">ارزان ترین</a>
+        <a onclick="sortProductsByPriceg()">گران ترین</a>
+        <a onclick="sortProductsById()">جدیدترین</a>
+        <a href="{% url 'products_list_page' %}">نمایش همه</a>
+    </div>
+</div>

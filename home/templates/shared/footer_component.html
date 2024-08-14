@@ -1,0 +1,68 @@
+<footer id="footer"><!--Footer-->
+    <img id="footer-pic" src="/static/images/blog/footer.png" alt="">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row" id="footer-row">
+                <div class="col-sm-3">
+                    <div class="address">
+                        <img id="Logo_1" src="/static/images/home/Logo.png" alt="" class="product-images">
+                    </div>
+                </div>
+                <div class="companyinfo">
+                    <img src="/static/images/home/main_logo.png">
+                    <hr>
+                    <p id="footer-p">{{ site_settings.about_us }}</p>
+                    <div id="tarah_site">
+                        <hr>
+                        <h2 id="tarah_site_h2">طراح سایت</h2>
+                        <hr>
+
+                        <a href="tel:+989334926837"
+                           class="">تماس
+                            <img src="/static/images/blog/Untitled.png" alt="">
+                        </a>
+                        <a href="https://t.me/@sina_taji">تلگرام
+                            <img src="/static/images/blog/telegram.png" alt="">
+                        </a>
+
+                        <a href="https://eitaa.com/sina_taji" target="_blank">ایتا
+
+                            <img src="/static/images/blog/ita.png" alt="">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row">
+                {% for link_box in link_boxes %}
+                    <div class="col-sm-3 pull-right">
+                        <div class="single-widget">
+                            <h2>{{ link_box.title }}</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                {% for link in link_box.sitefooter_set.all %}
+                                    <li><a id="t_a" href="{{ link.url_title }}">{{ link.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="pull-left">{{ site_settings.copy_right }}
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer><!--/Footer-->

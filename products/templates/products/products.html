@@ -1,0 +1,43 @@
+{% extends 'lay_out/layout.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+{% load render_partial %}
+{% block title %}محصولات{% endblock %}
+{% block content %}
+    <section class="product-section">
+        {% render_partial 'products.views.products_filter_menu_component' %}
+        <div class="banerhh">
+            <a href="#">
+                <img src="/static/images/home/FotoJet.jpg" alt="">
+            </a>
+        </div>
+        {% render_partial 'products.views.product_acces_componnetnt' %}
+
+
+        <div class="features_items" id="feature_items_products">
+
+            <br>
+            {% if products %}
+
+                {% include 'products/product_list_component.html' with product=product %}
+
+            {% else %}
+                <h2 class="noo_product">محصولی یافت نشد</h2>
+            {% endif %}
+        </div><!--features_items-->
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="curser_pointer"><a onclick="page_number({{ page_obj.previous_page_number }})">قبلی</a>
+                </li>
+            {% endif %}
+            {% for page in paginator.page_range %}
+                <li class="{% if page_obj.number == page %}active{% endif %}">
+                    <a class="curser_pointer" onclick="page_number({{ page }})">{{ page }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="curser_pointer"><a
+                        onclick="page_number({{ page_obj.next_page_number }})">بعدی</a></li>
+            {% endif %}
+        </ul>
+    </section>
+{% endblock %}

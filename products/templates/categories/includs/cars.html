@@ -1,0 +1,17 @@
+<div class="car-section">
+    <div><h2 id="cars_h2">ماشینت چیه؟ </h2></div>
+    <div class="swiper-container category-sliderr">
+        <div class="swiper-wrapper category-container">
+            {% for carz in cars %}
+                {% for car in carz.productcars_set.all %}
+                    <div class="swiper-slide category-item">
+                        <a href="{% url 'products_cars' car.url_title %}">
+                            <img src="{{ car.logo.url }}" alt="{{ car.title }}">
+                            <h3>{{ car.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

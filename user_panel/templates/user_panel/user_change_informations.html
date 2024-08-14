@@ -1,0 +1,48 @@
+{% extends 'lay_out/layout.html' %}
+{% load thumbnail %}
+{% load render_partial %}
+{% block title %}تغییر اطلاعات{% endblock %}
+{% block content %}
+
+    <div id="forms_container">
+        <div id="form-uii">
+            <div id="user-change-informations" class="col-sm-3">
+                {% render_partial 'user_panel.views.user_panel_mennu_component' %}
+                {% if current_user.avatar %}
+                    {% thumbnail current_user.avatar "200x200" crop='center' as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+                {% else %}
+                    <img src="/static/images/home/main_logo.png" alt="">
+                {% endif %}
+            </div>
+            <form action="{% url 'user_change_informations' %}" method="post" id="formi" enctype="multipart/form-data" class="col-sm-4">
+                <div id="change-information-mobile">{% render_partial 'user_panel.views.user_panel_mennu_component' %}
+                    {% if current_user.avatar %}
+                        {% thumbnail current_user.avatar "200x200" crop='center' as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    {% else %}
+                        <img src="/static/images/home/main_logo.png" alt="">
+                    {% endif %}</div>
+                <div id="login_title"><h2>تغییر اطلاعات</h2></div>
+                <div id="form-body">
+                    <div id="input-area">
+                        {% for form in form %}
+                            <div class="form-inp">
+                                {% csrf_token %}
+                                <div id="label-form">{{ form.label }}</div>
+                                {{ form }}
+                                {{ form.errors }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="submit-button-cvr">
+                        <button id="submit-button" type="submit">تایید اطلاعات جدید</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

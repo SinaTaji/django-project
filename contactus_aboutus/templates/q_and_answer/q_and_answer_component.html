@@ -1,0 +1,36 @@
+{% extends 'lay_out/layout.html' %}
+{% block title %}پرس و پاسخ های متداول{% endblock %}
+{% block content %}
+    <div id="payment-container" class="container">
+        <h1 id="payment-title">پرسش و پاسخ های متداول</h1>
+        {% for q_and_answer in q_and_answers %}
+            <h2 id="method-title">{{ q_and_answer.question }}</h2>
+            <h4>{{ q_and_answer.answer }}</h4>
+            <hr>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="so">
+                <span class="socials-share share">
+                <h5 id="tamas">سوالی داری یا مشاوره میخوای</h5>
+                <div class="gpss">
+                    <a href="https://t.me/@khashayar_1370">
+                        <img src="/static/images/blog/telegram.png" alt="">تلگرام
+                    </a>
+                    <a href="https://eitaa.com/khashayar_1370" target="_blank">
+                        <img src="/static/images/blog/ita.png" alt="">ایتا
+                    </a>
+                    <a href="https://web.rubika.ir/#c=u0BI1oZ03d4c0014d776a06db29b2f77" target="_blank">
+                        <img src="/static/images/blog/rubika.png" alt="">روبیکا
+                    </a>
+                </div>
+                <br>
+            </span>
+    </div>
+    <hr>
+    <div id="tamas">
+        <a href="tel:+989903376236">
+            <img src="/static/images/blog/Untitled.png" alt="" class="pulse-animation">
+        </a>
+    </div>
+{% endblock %}

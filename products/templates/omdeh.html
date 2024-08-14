@@ -1,0 +1,71 @@
+{% extends 'lay_out/layout.html' %}
+{% load render_partial %}
+{% block title %}فروش محصولات عمده{% endblock %}
+{% block content %}
+
+
+    <div class="content-container">
+        <p class="highlight-text">
+            برای تأمین نیازهای فروشگاهی و کسب‌وکار خود به دنبال خرید عمده با قیمت‌های استثنایی هستید؟
+            ما با ارائه محصولات با کیفیت و قیمت‌های رقابتی، بهترین انتخاب برای خرید عمده شما هستیم!
+        </p>
+        <hr>
+        <h4>مزایای خرید عمده از ما:</h4>
+        <ul>
+            <li>قیمت‌های ویژه و تخفیفات اختصاصی</li>
+            <li>ارسال سریع و مطمئن به سراسر کشور</li>
+            <li>تنوع بی‌نظیر محصولات</li>
+            <li>پشتیبانی 24/7 و خدمات پس از فروش</li>
+        </ul>
+
+        <hr>
+
+        {% render_partial 'products.views.brands_include' %}
+
+
+        <div class="contact-section">
+            <h4 class="title"> جهت دریافت مشاوره رایگان با ما در تماس باشید </h4>
+            <hr>
+            <a href="tel:+989903376236">
+                <img src="/static/images/blog/Untitled.png" alt=""> تماس
+            </a>
+            <a href="mailto:lavazem.badane.khashayar@gmail.com">
+                <img src="/static/images/blog/Gmail_Logo_64px.png" alt=""> ایمیل ما
+            </a>
+            <hr>
+        </div>
+
+        <div class="social-media-section">
+            <h2 class="title">شبکـه های اجتـماعی</h2>
+            <hr>
+            <a href="https://t.me/@khashayar_1370">
+                <img src="/static/images/blog/telegram.png" alt="">
+            </a>
+            <a href="https://eitaa.com/khashayar_1370" target="_blank">
+                <img src="/static/images/blog/ita.png" alt="">
+            </a>
+            <a href="https://web.rubika.ir/#c=u0BI1oZ03d4c0014d776a06db29b2f77" target="_blank">
+                <img src="/static/images/blog/rubika.png" alt="">
+            </a>
+            <hr>
+        </div>
+
+
+        <p class="about-us-text">
+            درباره ما :
+            فروشگاه لوازم بدنه خشایار عرضه کننده انواع محصولات یدکی مربوط به بدنه خودرو است. شما از طریق این فروشگاه
+            می‌توانید کلیه محصولات را مشاهده و تهیه نمایید. فروشگاه لوازم بدنه خشایار در صفحات محصول خود توضیحات
+            جامعی
+            درباره محصولات خود در اختیار شما قرار می‌دهد و طبق اصول مشتری مداری حقایق را در اختیار شما می‌گذارد و
+            این
+            امکان
+            را فراهم می‌سازد که آگاهانه انتخاب نمایید و در صورت تمایل به‌صورت آنلاین از طریق درگاه‌های بانکی محصولات
+            را
+            سفارش و خریداری نمایید. فروشگاه لوازم بدنه خشایار از سال 1390 به عرضه انواع محصولات یدکی بدنه خودرو
+            می‌پردازد و
+            اینک در این وب‌سایت به‌صورت کاملاً تخصصی به قطعات بدنه خودرو ها می‌پردازد.
+        </p>
+    </div>
+
+    </div>
+{% endblock %}

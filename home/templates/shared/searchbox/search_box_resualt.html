@@ -1,0 +1,34 @@
+{% extends 'lay_out/layout.html' %}
+{% load render_partial %}
+{% load poll_extras %}
+{% block content %}
+    <div class="container" id="product_search_resualt">
+        {% render_partial 'products.views.products_filter_menu_component' %}
+        <h2 id="text_result_search">نتیجه جست و جو برای {{ search }}</h2>
+        <div class="row-product" id="product-list">
+            {% for product in products %}
+                <div id="product_lists_box" class="col-md-2 product-item" data-price="{{ product.price }} "
+                     data-id="{{ product.id }}">
+                    <a href="{{ product.get_absolute_url }} ">
+                        <div class="product-box">
+                            <img src="{{ product.image.url }}" alt="" class="products-image">
+                            <h2 class="product-title">{{ product.title }}</h2>
+                            <hr id="hr4pc">
+                            <div class="color-palette">
+                                {% for color in product.colors.all %}
+                                    <span class="color-box" data-color="{{ color.hex_value }}"
+                                          title="{{ color.title }}"></span>
+                                {% endfor %}
+                            </div>
+                            <hr id="hr4pc">
+                            <div class="product-price">
+                                <h3>{{ product.price|int_comma }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

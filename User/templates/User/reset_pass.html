@@ -1,0 +1,31 @@
+{% extends 'lay_out/layout.html' %}
+{% block title %}تغییر کلمه عبور{% endblock %}
+
+{% block content %}
+    <div id="forms_container">
+        <div id="form-uii">
+            <form action="{% url 'reset_pass_page' active_code=user.email_active_code %}" method="post" id="form">
+                <div id="login_title"><h2>تغییر رمز عبور</h2></div>
+                <div id="welcome-line-1">لوازم بدنه خشایار</div>
+                <div id="form-body">
+                    <div id="welcome-lines">
+                        <div id="welcome-line-2">به یکی از بزرگترین فروشگاه های لوازم بدنه خودرو خوش آمدید !</div>
+                    </div>
+                    <div id="input-area">
+                        {% for form in reset_pass_form %}
+                            <div class="form-inp">
+                                {% csrf_token %}
+                                {{ form }}
+                                {{ form.errors }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="submit-button-cvr">
+                        <button id="submit-button" type="submit">ثبت</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+<div class="panel-group category-products" id="accordian">
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="{% url 'products_list_page' %}">
+            <span class="pull-left"></span> <h5 class="f-title"> نمایش همه</h5></a></li>
+    </ul>
+    {% for category in categories %}
+        <div class="panel panel-default">
+            <div class="panel-headingg">
+                <h4 class="panel-title">
+                    {% if category.product_category_set.all %}
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ category.url_title }}">
+                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                            {{ category.title }} </a>
+                    {% else %}
+                        <a href="{% url 'products_category' category.url_title %}">
+                            {{ category.title }}
+                        </a>
+                    {% endif %}
+                </h4>
+            </div>
+                {% if category.product_category_set.all %}
+                    <div id="{{ category.url_title }}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul>
+                                {% for sub_category in category.product_category_set.all %}
+                                    <li>
+                                        <a href="{% url 'products_category' sub_category.url_title %}"> {{ sub_category.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+        </div><!--/category-productsr-->
+    {% endfor %}
+</div>

@@ -1,0 +1,15 @@
+<div class="brand-section">
+    <h2>از کدوم برند میخوای خرید کنی ؟</h2>
+    <div class=" swiper-container category-slider">
+        <div class=" swiper-wrapper category-container">
+            {% for brand in brands %}
+                <div class=" swiper-slide category-item">
+                    <a href="{% url 'products_brand' brand.brand_url %}">
+                        <img src="{{ brand.image.url }}" alt="{{ brand.title }}">
+                        <h3>{{ brand.title }}</h3>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

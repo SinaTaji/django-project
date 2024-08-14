@@ -1,0 +1,60 @@
+<div class="fixed-bottom-nav">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home_page' %}">
+                <i class="fa fa-home"></i>
+                خانه
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categories_page' %}">
+                <i class="fa fa-th-large"></i>
+                دسته بندی
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_basket_page' %}">
+                <i class="fa fa-shopping-cart"></i>
+                سبد خرید
+            </a>
+        </li>
+        {% if not request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register_page' %}">
+                    <i class="fa fa-sign-in"></i>
+                    ثبت نام
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login_page' %}">
+                    <i class="fa fa-key"></i>
+                    ورود
+                </a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout_page' %}">
+                    <i class="fa fa-sign-out"></i>
+                   خروج
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_dashboard_page' %}">
+                    <i class="fa fa-user"></i>
+                    پروفایل
+                </a>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            <div class="dropup">
+                <button id="dropbtn1" class="dropbtnn" onclick="toggleDropup('dropupContent1')"></button>
+                <div id="dropupContent1" class="dropup-content">
+                    <a href="{% url 'products_list_page' %}">محصولات</a>
+                    <a href="{% url 'article_list_view' %}">مقالات</a>
+                    <a href="{% url 'about_us_page' %}">درباره مـا</a>
+                    <a href="{% url 'contact_us_page' %}">تماس با مـا</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

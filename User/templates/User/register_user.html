@@ -1,0 +1,55 @@
+{% extends 'lay_out/layout.html' %}
+{% block title %}ثبت نام کاربر جدید{% endblock %}
+
+{% block content %}
+    <div id="forms_container">
+        <div id="form-uii">
+            <form action="{% url 'register_page' %}" method="post" id="form">
+                <div id="login_title"><h2>فرم ثبت نام</h2></div>
+                <div id="welcome-line-1">لوازم بدنه خشایار</div>
+                <div id="form-body">
+                    <div id="welcome-lines">
+
+                        <div id="welcome-line-2">به یکی از بزرگترین فروشگاه های لوازم بدنه خودرو خوش آمدید !</div>
+                    </div>
+                    <div id="input-area">
+                        {% for form in register_form %}
+                            <div class="form-inp">
+                                {% csrf_token %}
+                                {{ form }}
+                                {{ form.errors }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="submit-button-cvr">
+                        <button id="submit-button" type="submit">ثبت نام</button>
+                        <a id="submit-button" href="{% url 'login_page' %}">ورود</a>
+                    </div>
+                    <script>
+                        function showSweetAlertMessage(icon, text) {
+                            Swal.fire({
+                                title: 'اعلان',
+                                text: text,
+                                icon: icon,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'رفتن به جیمیل'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = 'https://mail.google.com/';
+                                }
+                            });
+                        }
+
+                        document.addEventListener('DOMContentLoaded', (event) => {
+                            {% if messages %}
+                                {% for message in messages %}
+                                    showSweetAlertMessage('{{ message.tags|default:"info" }}', '{{ message|escapejs }}');
+                                {% endfor %}
+                            {% endif %}
+                        });
+                    </script>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

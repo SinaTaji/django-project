@@ -1,0 +1,105 @@
+{% extends 'lay_out/layout.html' %}
+{% block title %}تماس با ما{% endblock %}
+{% block content %}
+    <div id="contact-page" class="container">
+        <div class="bg">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="contact-form">
+                        <h2 class="title text-center">با ما در ارتباط باشیـد</h2>
+                        <div class="status alert alert-success" style="display: none"></div>
+                        <form id="main-contact-form" class="contact-form row" action="{% url 'contact_us_page' %}"
+                              method="post">
+                            {% csrf_token %}
+
+
+                            <div class="col-md-6 form-group">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                {{ form.full_name.label_tag }}
+                                {{ form.full_name }}
+                                {{ form.full_name.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ form.title.label_tag }}
+                                {{ form.title }}
+                                {{ form.title.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
+                                {{ form.message.errors }}
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <button type="submit" class="btn btn-primary pull-right">ارسال</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact-info">
+                        <h2 class="title text-center">پل های ارتباطی</h2>
+                        <div class="gpss">
+                            <h4 class="title text-center">آدرس ما</h4>
+                            <hr>
+                            <a href="https://balad.ir/directions/driving?destination=50.841109013830646%2C32.322722276210186"
+                               class="">
+                                <img src="/static/images/blog/balad-logo.png" alt=""> بلد
+                            </a>
+                            <a href="https://www.google.com/maps/dir//32.3228857,50.8411462/@32.3227934,50.8411811,21z?entry=ttu"
+                               class="map-link">
+                                <img src="/static/images/blog/googlemap.png" alt=""> گوگل مپ
+                            </a>
+                            <hr>
+                            <br>
+                            <h2 class="title text-center">تماس با ما</h2>
+                            <hr>
+                            <a href="tel:+989903376236"
+                               class="">
+                                <img src="/static/images/blog/Untitled.png" alt=""> تماس
+                            </a>
+
+                            <a href="mailto:lavazem.badane.khashayar@gmail.com"
+                               class="map-link">
+                                <img src="/static/images/blog/Gmail_Logo_64px.png" alt=""> ایمیل ما
+                            </a>
+                            <hr>
+                            <br>
+                        </div>
+
+
+                        <div class="contact-info">
+                            <h2 class="title text-center">شبکـه های اجتـماعی</h2>
+                            <div class="gpss">
+                                <hr>
+
+                                <a href="https://t.me/@khashayar_1370">
+                                    <img src="/static/images/blog/telegram.png" alt="">
+                                </a>
+
+                                <a href="https://eitaa.com/khashayar_1370" target="_blank">
+
+                                    <img src="/static/images/blog/ita.png" alt="">
+                                </a>
+
+                                <a href="https://web.rubika.ir/#c=u0BI1oZ03d4c0014d776a06db29b2f77" target="_blank">
+                                    <img src="/static/images/blog/rubika.png" alt="">
+                                </a>
+
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

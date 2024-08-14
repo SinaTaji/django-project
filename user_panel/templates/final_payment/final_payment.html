@@ -1,0 +1,73 @@
+{% extends 'lay_out/layout.html' %}
+{% load poll_extras %}
+{% load render_partial %}
+{% block title %}تکمیل خرید{% endblock %}
+{% block content %}
+    <div class="pay-container">
+        <div class="pay-form">
+            <h1>مشخصات جهت تکمیل خرید</h1>
+            <form id="payment-form" method="post">
+                {% csrf_token %}
+                <div id="pay-form">
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="error-message">{{ field.errors }}</div>
+                                <script>
+                                    document.getElementById('{{ field.id_for_label }}').classList.add('error');
+                                </script>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" id="submit-btn" style="display:none;"></button>
+            </form>
+        </div>
+
+        {% render_partial 'user_panel.views.faktor_component' %}
+
+        <div class="way2paying">
+            <h1>روش های پرداخت</h1>
+            <div id="zarinpal">
+                <img src="/static/images/cart/zarinpal.jpg" alt="زرین پال">
+                <h2> 1_ درگاه پرداخت زرین پال</h2>
+
+            </div>
+            <h4>( نیاز به حساب کاربری )</h4>
+            <hr>
+            {% if request.user.is_authenticated %}
+                <a id="pay-w-z" class="btn btn-default check_out" href="javascript:void(0);">پرداخت امن و راحت با زرین
+                    پال</a>
+            {% else %}
+                <a id="pay-w-z-x" class="btn btn-default check_out" href="{% url 'login_page' %}?next={% url 'final_payment' %}">پرداخت امن و راحت با زرین
+                    پال</a>
+            {% endif %}
+            <hr>
+            <div id="zarinpal">
+                <img src="/static/images/cart/card2card.png" alt="زرین پال">
+                <h2> 2_ کارت به کارت </h2>
+            </div>
+            <h4>( بدون نیاز به حساب کاربری )</h4>
+            <hr>
+            <a id="pay-w-z-x" class="btn btn-default check_out" href="{% url 'card_to_card_page' %}">کارت به کارت</a>
+            <hr>
+            <div id="zarinpal">
+                <span id="snap-pay"><h3>! pay</h3></span>
+                <h2> 3_ پرداخت اقساطی با اسنپ پی </h2>
+            </div>
+            <hr>
+            <h2 id="coming-soon">به زودی ...</h2>
+            <hr>
+            <br>
+
+            <div class="way2pay" id="final-p">
+                <a href="{% url 'way2pay' %}"><h2>اطلاع از روش های پرداخت </h2></a>
+            </div>
+        </div>
+        <div id="tamasbama">
+            <a href="tel:+989903376236" class="fa fa-phone-square"> مشاوره رایگان </a>
+        </div>
+    </div>
+{% endblock %}

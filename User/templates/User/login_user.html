@@ -1,0 +1,36 @@
+{% extends 'lay_out/layout.html' %}
+{% block title %}ورود به حساب کاربری{% endblock %}
+
+{% block content %}
+    <div id="forms_container">
+        <div id="form-uii">
+            <form action="{% url 'login_page' %}" method="post" id="form">
+                <div id="login_title"><h2>فرم ورود</h2></div>
+                <div id="welcome-line-1">لوازم بدنه خشایار</div>
+                <div id="form-body">
+                    <div id="welcome-lines">
+                        <div id="welcome-line-2">به یکی از بزرگترین فروشگاه های لوازم بدنه خودرو خوش آمدید !</div>
+                    </div>
+                    <div id="input-area">
+                        {% for form in login_form %}
+                            <div class="form-inp">
+                                {% csrf_token %}
+                                {{ form }}
+                                {{ form.errors }}
+                            </div>
+                        {% endfor %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </div>
+                    <div id="submit-button-cvr">
+                        <button id="submit-button" type="submit">ورود</button>
+                    </div>
+                    <a id="submit-button" href="{% url 'register_page' %}">ثبت نام</a>
+                    <div id="forgot-pass">
+                        <a href="{% url 'forgot_pass_page' %}">رمز عبور خودتو فراموش کردی ؟</a>
+                    </div>
+                    <div id="bar"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

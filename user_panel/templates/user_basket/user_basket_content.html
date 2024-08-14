@@ -1,0 +1,107 @@
+{% load poll_extras %}
+
+{% if order_details %}
+    <section id="cart_items">
+        <div class="container" id="cart_container">
+            {% for detail in order_details %}
+                <div class="cart_container">
+                    <div class="cart_informations">
+                        <div class="cart_info">
+                            <a href="{{ detail.order.products.get_absolute_url }}"
+                               id="cart_product_title">{{ detail.order.products.title }}</a>
+                            <div class="basket_product_color_container">
+                                {% if detail.color %}
+                                    <p class="basket_product_text">رنگ : {{ detail.color }}</p>
+                                    <span class="basket_product_color"
+                                          style="background-color: {{ detail.color.hex_value }};"></span>
+                                {% else %}
+                                {% endif %}
+                                {% if detail.order.side %}
+                                    <p class="basket_product_text">سمت : {{ detail.order.get_side_display }}</p>
+                                {% else %}
+                                {% endif %}
+
+                            </div>
+                            <h5 class="garanti fa fa-check-circle " id="g"> گارانتی اصالت و سلامت فیزیکی
+                                کالا </h5>
+                            <h5 id="garanti">ضمانت : {{ detail.order.products.get_garanti_display }} </h5>
+                            <div>
+                                <h3 id="cart_total_price_mobile">قیمت نهایی
+                                    : {{ detail.order_total_price | int_comma }}</h3>
+                            </div>
+                        </div>
+                        <h4 class="cart_price">قیمت واحد : {{ detail.price | int_comma }}</h4>
+                        <a href="{{ detail.order.products.get_absolute_url }}"><img
+                                src="{{ detail.order.products.image.url }}" alt="" class="cart_image"></a>
+
+
+                    </div>
+                    <div class="cart_footer">
+                        <div class="cart_quantity_button">
+                            <h3>تعداد : </h3>
+                            <a class="cart_quantity_up"
+                               onclick="changeOrderDetail({{ detail.order.id }}, 'increase')">
+                                + </a>
+                            <input class="cart_quantity_input" type="text" name="quantity"
+                                   value="{{ detail.order.count }}" autocomplete="off" size="2">
+                            <a class="cart_quantity_down"
+                               onclick="changeOrderDetail({{ detail.order.id }}, 'decrease')"> - </a>
+                        </div>
+                        <div>
+                            <h3 class="cart_total_price" id="cart_total_price_pc">قیمت نهایی
+                                : {{ detail.order_total_price | int_comma }}</h3>
+                        </div>
+                        <div>
+                            <a class="cart_quantity_delete"
+                               onclick="removeOrderDetail({{ detail.order.id }})"><i
+                                    class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <span id="q_and_answer_link"> <img src="/static/images/blog/q_&_a.png"> <a
+                    href="{% url 'q_and_answer_view' %}"> پرسش و پاسخ های متداول </a></span>
+        </div>
+    </section>
+    <section id="do_action">
+        <div class="container">
+            <div class="row">
+                <div class="way2pay">
+                    <a href="{% url 'way2pay' %}"><h2>اطلاع از روش های پرداخت </h2></a>
+                </div>
+                <div class="way2pay-mobile">
+                    <a href="{% url 'way2pay' %}"><h2>اطلاع از روش های پرداخت </h2></a>
+                </div>
+                <div class="col-sm-4">
+                    <div class="total_area">
+                        <div id="total_area_pc">
+                            <h3>صورت حساب شما</h3>
+                            <ul>
+                                {% for detail in order_details %}
+                                    <li>{{ detail.order.products.title }}{% if detail.color %} رنگ : {{ detail.color }}{% endif %}<span>{{ detail.price | int_comma }}</span></li>
+                                {% endfor %}
+                                <li id="li"><h4>مجمـوع :</h4>  {{ total_price | int_comma }}</li>
+                            </ul>
+                            <a class="btn btn-default check_out" href="{% url 'final_payment' %}">ادامه خرید</a>
+                        </div>
+                        <div id="total_area_mobile"><a class="btn btn-default check_out"
+                                                       href="{% url 'final_payment' %}"> {{ total_price | int_comma }} | ادامه
+                            خرید </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% else %}
+    <div class="container">
+        <div class="empty-basket">
+            <img src="/static/images/cart/empty-basket.png" alt="">
+            <a href="{% url 'products_list_page' %}"><h2>مشاهده لیست قطعات </h2></a>
+            <div class="alert alert-warning">
+                <h2>سبد خرید شما خالی است</h2>
+            </div>
+        </div>
+    </div>
+{% endif %}

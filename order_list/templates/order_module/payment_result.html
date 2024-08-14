@@ -1,0 +1,53 @@
+{% extends 'lay_out/layout.html' %}
+{% load poll_extras %}
+{% block title %}نتیجه پرداخت{% endblock %}
+
+{% block content %}
+    <div id="final_pay_container">
+        {% if info %}
+            <div class="alert alert-info">
+                <h2>این تراکنش قبلا ثبت شده است</h2>
+            </div>
+        {% endif %}
+
+        {% if error %}
+           <div class="error_pay">
+                <div id="succsess_pay_top"><img src="/static/images/cart/errore-pay.png">
+                    <h1 id="error_pay"><b>خطایی رخ داده یا کاربر از خرید صرف نظر کرده</b></h1></div>
+                <hr>
+                <div id="success_pay_detail">
+                    <h1 id="success_pay_">میخوای دوباره امتحان کنی؟ </h1>
+                    <div id="success_pay_btn">
+                        <a href="{% url 'user_basket_page' %}">بله</a>
+                        <a href="{% url 'home_page' %}">خیر</a>
+                    </div>
+                    <br>
+                </div>
+                <br>
+            </div>
+        {% endif %}
+
+        {% if success %}
+            <div class="success_pay">
+                <div id="succsess_pay_top"><img src="/static/images/cart/succsess-pay.png">
+                    <h1 id="success_pay"><b>تراکنش موفق</b></h1></div>
+                <hr>
+                <div id="success_pay_detail">
+                    <h1 id="success_pay_">خرید شما با موفقیت به ثبت رسید </h1>
+                    <h3 id="succsess_pay_info">اطلاعات بیشتر</h3>
+                    <h2>نام کاربری شما : {{ user.username }}</h2>
+                    <h2>کد پیگیری خرید شما : {{ ref_str }}</h2>
+                    <h2>مجموع مبلغ خرید شما : {{ current_order.final_price|int_comma }}</h2>
+                    <h2> زمان ثبت خرید ساعت : {{ current_order.payment_date|time }}</h2>
+                    <h2>از خرید شما سپاسگذاریم</h2>
+                    <h3 id="success_pay_thank">خرید شما تایید شد و حد اکثر تا 2 روز دیگر تحویل پست داده میشو از شکیبایی شما سپاسگذاریم</h3>
+                    <div id="success_pay_btn">
+                        <a href="{% url 'home_page' %}">تایید</a>
+                    </div>
+                    <br>
+                </div>
+                <br>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

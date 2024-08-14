@@ -1,0 +1,61 @@
+<header id="header">
+    <div class="header-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo">
+                        <a href="{% url 'home_page' %}">
+                            <img id="main_logo" src="/static/images/home/main_logo.png" alt="">
+                        </a>
+                        <div id="search_box">{% include 'shared/searchbox/search_box.html' %}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom">
+        <div class="mainmenu">
+            <ul class="nav navbar-nav collapse navbar-collapse">
+
+
+                <li><a href="{% url 'home_page' %}"
+                       class='{% if request.resolver_match.url_name == 'home_page' %} active {% endif %}'>خـانه</a>
+                </li>
+
+                <li>
+                    <a class='{% if request.resolver_match.url_name == 'products_list_page' %} active {% endif %}'
+                       href="{% url 'products_list_page' %}">محصولات<i></i></a>
+
+                </li>
+
+                <li>
+                    <a class='{% if request.resolver_match.url_name == 'about_us_page' %} active {% endif %}'
+                       href="{% url 'about_us_page' %}">درباره مـا</a></li>
+                <li><a href="{% url 'user_basket_page' %}"><i class="fa fa-shopping-cart"></i> سبد خرید </a>
+                <li>
+                    <a class='{% if request.resolver_match.url_name == 'article_list_view' %} active {% endif %}'
+                       href="{% url 'article_list_view' %}">مقالات<i></i></a>
+                </li>
+                <li>
+                    <a class='{% if request.resolver_match.url_name == 'contact_us_page' %} active {% endif %}'
+                       href="{% url 'contact_us_page' %}">تماس با مـا</a></li>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                        <li><a href="/admin"> پنل مدیریت </a></li>
+                    {% endif %}
+                    <li><a href="{% url 'user_dashboard_page' %}"> پنل کاربری </a></li>
+                    <li><a href="{% url 'logout_page' %}"><i class="fa fa-sign-out"></i> خروج </a></li>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'register_page' %}"><i class="fa fa-sign-in"></i> ثبت نام</a>
+                    </li>
+                    <li><a href="{% url 'login_page' %}"><i class="fa fa-key"></i> ورود</a></li>
+
+                {% endif %}
+            </ul>
+        </div>
+
+    </div><!--/header-bottom-->
+    {% include 'shared/nav.html' %}
+</header><!--/header-->

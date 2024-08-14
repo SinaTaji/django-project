@@ -1,0 +1,150 @@
+{% extends 'lay_out/layout.html' %}
+{% load render_partial %}
+{% load thumbnail %}
+{% load poll_extras %}
+{% block title %}صفحه اصلی{% endblock %}
+{% block content %}
+    <section id="slider"><!--slider-->
+        <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" id="slider_home">
+                {% for car in cars %}
+                    <div class="item {% if forloop.first %} active {% endif %}">
+                        <div class="car_text pull-left">
+                            <img src="{{ car.logo.url }}" alt="{{ car.title }}">
+                            <h2>{{ car.title }}</h2>
+                            <a id="show_all" href="{% url 'products_cars' car.url_title %}"
+                               target="_blank"
+                               class="btn btn-default get"> قطعات {{ car.title }} </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </section><!--/slider-->
+
+    <br>
+
+    {% render_partial 'products.views.product_acces_componnetnt' %}
+
+    <div class="category-section">
+        <span>
+            <h2 id="tag_products">جدید ترین ها
+                <a id="show_all" href="{% url 'products_list_page' %}">
+                    نمایش همه
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+            </h2>
+        </span>
+        <div class="swiper-container category-slider">
+            <div class="swiper-wrapper category-container">
+                {% for item in latest_products %}
+                    <div class="swiper-slide category-items">
+                        <a href="{{ item.get_absolute_url }}">
+                            {% thumbnail item.image "220x220" as im %}
+                                <img alt="{{ item.title }}" src="{{ im.url }}" width="{{ im.width }}"
+                                     height="{{ im.height }} ">
+                            {% endthumbnail %}
+                            <div class="titleh">
+                                <h2>{{ item.title }}</h2>
+                            </div>
+                            {% if item.colors.all %}
+                                <h4 id="colors_product_home">رنگ های موجود</h4>
+                                <div id="product_color">
+                                    {% for color in item.colors.all %}
+                                        <span class="color-box" data-color="{{ color.hex_value }}"
+                                              title="{{ color.title }}"></span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div id="no-color"><h4>محصول فاقد رنگ بندی میباشد</h4></div>
+                            {% endif %}
+                            <h3 id="product_price">{{ item.price|int_comma }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+
+
+        {% render_partial 'products.views.cars_include' %}
+        <br>
+
+
+        <h2 id="omde_titel">فروش خرده و عمده به همکاران در سراسر کشور با نازل ترین قیمت</h2>
+        <div class="banerh">
+            <a href="{% url 'omdeh_page' %}">
+                <img src="/static/images/home/banner.png" alt="فروش عمده">
+            </a>
+            <div><a href="{% url 'omdeh_page' %}"> همکار گرامی جهت خرید قطعات به صورت خرده و عمده کیلک کنید </a></div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h2 id="tag_products">محبوب ترین ها
+            <a id="show_all" href="{% url 'products_list_page' %}">
+                نمایش همه
+                <i class="fa fa-arrow-left"></i>
+            </a>
+        </h2>
+        <div class="swiper-container category-slider">
+            <div class="swiper-wrapper category-container">
+                {% for item in most_visited_products %}
+                    <div class="swiper-slide category-items">
+                        <a href="{{ item.get_absolute_url }}">
+                            {% thumbnail item.image "220x220" as im %}
+                                <img alt="{{ item.title }}" src="{{ im.url }}" width="{{ im.width }}"
+                                     height="{{ im.height }}">
+                            {% endthumbnail %}
+                            <div class="titleh">
+                                <h2>{{ item.title }}</h2>
+                            </div>
+                            {% if item.colors.all %}
+                                <h4 id="colors_product_home">رنگ های موجود</h4>
+                                <div id="product_color">
+                                    {% for color in item.colors.all %}
+                                        <span class="color-box" data-color="{{ color.hex_value }}"
+                                              title="{{ color.title }}"></span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div id="no-color"><h4>محصول فاقد رنگ بندی میباشد</h4></div>
+                            {% endif %}
+                            <h3 id="product_price">{{ item.price|int_comma }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div><!--RetailSale_items-->
+    <br>
+    <br>
+
+    <div id="dast_resi">
+        <h2 id="dast_resi_h2">دسترسی به</h2>
+        <div class="box_main"><a href="{% url 'article_list_view' %}">
+            <div id="box_1">مقالات</div>
+        </a>
+            <a href="{% url 'products_list_page' %}">
+                <div id="box_2">محصولات</div>
+            </a>
+            <a href="{% url 'contact_us_page' %}">
+                <div id="box_3">تماس با ما</div>
+            </a>
+
+            <a href="{% url 'categories_page' %}">
+                <div id="box_4">دسته بندی ها</div>
+            </a>
+        </div>
+    </div>
+    <br>
+
+    {% render_partial 'products.views.brands_include' %}
+
+{% endblock %}

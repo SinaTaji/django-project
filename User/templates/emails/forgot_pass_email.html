@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فراموشی رمز عبور</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffb400, #ffe9b6);
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            direction: rtl; /* اضافه شده برای راست به چپ */
+            text-align: right; /* اضافه شده برای ترازبندی متن */
+        }
+
+        .email-container {
+            background-color: #ffffff;
+            border: 1px solid #e2e2e2;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.36);
+        }
+
+        .header {
+            color: black;
+            text-align: center;
+            padding: 10px;
+            background-color: #ffd700; /* طلایی */
+        }
+
+        .header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .content {
+            padding: 20px;
+        }
+        .content a {
+            color: black;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background: linear-gradient(to right, #e1c000, rgba(255, 207, 0, 0.59));
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        بازیابی رمز عبور
+    </div>
+    <div class="content">
+        <h4 style="color: #232323">با سلام کاربر گرامی چناچه شما درخواست تغییر رمز عبور خود را نکرده اید این پیام را نادیده بگیرید</h4>
+        <h2>در غیر این صورت روی لینک زیر کلیک کنید</h2>
+        <p><a href="http://localhost:8000{% url 'reset_pass_page' active_code=user.email_active_code %}">بازیابی رمز عبور</a></p>
+    </div>
+    <div class="footer">
+        <h2>این ایمیل به صورت خودکار ارسال شده است، لطفاً به آن پاسخ ندهید.</h2>
+    </div>
+</div>

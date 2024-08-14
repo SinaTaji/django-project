@@ -1,0 +1,17 @@
+<div id="product_acess">
+    <h2 id="product_aces">
+        چه چیزی نیاز داری میتونی خیلی راحت اینجا پیدا کنی با تنوع زیاد قطعات و رنگ بندی کامل
+    </h2>
+</div>
+
+<div class="badane_logo">
+    {% for category in categories %}
+        <div class="logo_item">
+            <a href="{% url 'products_category' category.url_title %}">
+                <img src="{{ category.image.url }}" alt="{{ category.title }}">
+                <h4>{{ category.title }}</h4>
+            </a>
+        </div>
+    {% endfor %}
+
+</div>

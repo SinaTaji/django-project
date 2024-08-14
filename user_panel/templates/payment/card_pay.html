@@ -1,0 +1,46 @@
+{% extends 'lay_out/layout.html' %}
+{% load render_partial %}
+{% block title %}پرداخت کارت به کارت{% endblock %}
+{% block content %}
+    <div id="payment-container" class="container">
+        <div class="tamas_way"><a href="tel:+989903376236"
+                                  class="">
+            <img src="/static/images/blog/Untitled.png" alt="">
+            <h2>در هر مرحله از خرید نیاز به مشاوره داشته باشید میتوانید با یک کلیک با ما تماس بگیرید</h2>
+        </a></div>
+        <h1 id="payment-title">پرداخت کارت به کارت </h1>
+        <hr>
+        <div id="payment-method" class="payment-method">
+            <h4 id="method-description">اگر می‌خواهید از طریق کارت به کارت خرید خود را انجام دهید، مراحل زیر را طی
+                کنید:</h4>
+            <ul id="method-steps">
+                <li>از شماره کارت درج شده در تصویر استفاده کنید</li>
+                <li>موقع پرداخت از نام صاحب حساب اطمینان حاصل فرمایید</li>
+                <li>پس از اتمام عملیات با یکی از روش‌های زیر رسید پرداخت و عکس فاکتور خود را ارسال فرمایید</li>
+            </ul>
+            <img id="payment-image" src="/static/images/cart/refah_cart.png" alt="کارت رفاه">
+            <div id="contact-info" class="contact-info">
+                <h2 id="contact-title" class="title text-center">شبکـه‌های اجتـماعی</h2>
+                <div id="social-links" class="social-links">
+                    <hr>
+                    <a id="telegram-link" href="https://t.me/@khashayar_1370">
+                        <img src="/static/images/blog/telegram.png" alt="تلگرام">
+                    </a>
+                    <a id="eitaa-link" href="https://eitaa.com/khashayar_1370" target="_blank">
+                        <img src="/static/images/blog/ita.png" alt="ایتا">
+                    </a>
+                    <a id="rubika-link" href="https://web.rubika.ir/#c=u0BI1oZ03d4c0014d776a06db29b2f77"
+                       target="_blank">
+                        <img src="/static/images/blog/rubika.png" alt="روبیکا">
+                    </a>
+                    <hr>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="faktor_card_2_card">
+        {% render_partial 'user_panel.views.faktor_component' %}
+    </div>
+{% endblock %}

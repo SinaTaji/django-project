@@ -1,0 +1,59 @@
+{% extends 'lay_out/layout.html' %}
+{% load thumbnail %}
+{% block title %}درباره ما{% endblock %}
+{% block content %}
+    <div id="contact-page" class="container">
+        <div class="bg">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="contact-infoo">
+                        <h2 class="title text-center">لوگـو فروشگاه</h2>
+                        <img src="{{ site_settings.site_logo.url }}" class="img-responsive">
+                    </div>
+                    <br>
+                </div>
+                <div class="col-sm-8">
+                    <div class="about">
+                        <h2 class="title text-center">دربـاره ما</h2>
+                        <h4 id="about-us_text">
+                            {{ site_settings.about_us }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 about-address">
+                    <address>
+                        <p>  {{ site_settings.address }}
+                            | {{ site_settings.site_name }}
+                            | تلفن تماس : {{ site_settings.phone }}
+                            | ایمیـل : {{ site_settings.email }}
+                        </p>
+                    </address>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-12" style="overflow: hidden; margin-bottom: 40px"><h2 class="title text-center">
+                        مـا اینجـا هستیـم ... </h2>
+                        <div id="gmapa" class="contact-map">
+                            <img src="/static/images/blog/map_our_place.png" alt="Map">
+                        </div>
+
+                        <hr>
+                        <div class="gps">
+                            <a href="https://balad.ir/directions/driving?destination=50.841109013830646%2C32.322722276210186" class="balad-link">
+                                <img src="/static/images/blog/balad-logo.png" alt=""> مسیر یابی با بلد
+                            </a>
+                            <a href="https://www.google.com/maps/dir//32.3228857,50.8411462/@32.3227934,50.8411811,21z?entry=ttu" class="google-map-link">
+                                <img src="/static/images/blog/googlemap.png" alt=""> مسیر یابی با گوگل مپ
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

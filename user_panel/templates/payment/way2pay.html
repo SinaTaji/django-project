@@ -1,0 +1,58 @@
+{% extends 'lay_out/layout.html' %}
+{% block title %}روش های پرداخت{% endblock %}
+{% block content %}
+    <div id="payment-container" class="container">
+        <div class="tamas_way"><a href="tel:+989903376236"
+                                  class="">
+            <img src="/static/images/blog/Untitled.png" alt="">
+            <h2>در هر مرحله از خرید نیاز به مشاوره داشته باشید میتوانید با یک کلیک با ما تماس بگیرید</h2>
+        </a></div>
+        <h1 id="payment-title">شیوه‌های پرداخت به دلخواه شما:</h1>
+        <div id="payment-method" class="payment-method">
+            <h2 id="method-title">1_ پرداخت سریع و آسان از طریق کارت به کارت:</h2>
+            <h4 id="method-description">اگر می‌خواهید از طریق کارت به کارت خرید خود را انجام دهید، مراحل زیر را طی
+                کنید:</h4>
+            <ul id="method-steps">
+                <li>از شماره کارت درج شده در تصویر استفاده کنید</li>
+                <li>موقع پرداخت از نام صاحب حساب اطمینان حاصل فرمایید</li>
+                <li>پس از اتمام عملیات با یکی از روش‌های زیر رسید پرداخت خود را ارسال فرمایید</li>
+            </ul>
+            <img id="payment-image" src="/static/images/cart/refah_cart.png" alt="کارت رفاه">
+            <div id="contact-info" class="contact-info">
+                <h2 id="contact-title" class="title text-center">شبکـه‌های اجتـماعی</h2>
+                <div id="social-links" class="social-links">
+                    <hr>
+                    <a id="telegram-link" href="https://t.me/@khashayar_1370">
+                        <img src="/static/images/blog/telegram.png" alt="تلگرام">
+                    </a>
+                    <a id="eitaa-link" href="https://eitaa.com/khashayar_1370" target="_blank">
+                        <img src="/static/images/blog/ita.png" alt="ایتا">
+                    </a>
+                    <a id="rubika-link" href="https://web.rubika.ir/#c=u0BI1oZ03d4c0014d776a06db29b2f77"
+                       target="_blank">
+                        <img src="/static/images/blog/rubika.png" alt="روبیکا">
+                    </a>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <h2 id="method-title">2_ پرداخت اینترنتی :</h2>
+        <img src="/static/images/cart/zarinpal.jpg" alt="زرین پال">
+        <h2 id="method-description"> پرداخت امن از طریق درگاه بانکی زرین پال</h2>
+        <h2 id="method-title">چرا زرین پال؟</h2>
+        <h4>در فروشگاه لوازم بدنه خشایار، امنیت و راحتی شما در پرداخت‌ها اولویت ماست. به همین دلیل، ما از زرین پال، یکی
+            از معتبرترین و امن‌ترین سیستم‌های پرداخت آنلاین در ایران، استفاده می‌کنیم. زرین پال با داشتن مجوزها و
+            استانداردهای بین‌المللی، تضمین می‌کند که تراکنش‌های شما به صورت کاملاً ایمن و سریع انجام می‌شود.</h4>
+        <h2 id="method-title">پروتکل‌های امنیتی پیشرفته</h2>
+        <h4>زرین پال از پروتکل‌های SSL و رمزنگاری اطلاعات برای حفاظت از داده‌های مالی شما استفاده می‌کند. این پروتکل‌ها
+            اطمینان می‌دهند که اطلاعات شما در هنگام انتقال بین مرورگر و سرور به طور کامل محافظت می‌شود.</h4>
+        <h2 id="method-title">مجوزهای معتبر</h2>
+        <h4>زرین پال دارای مجوز از بانک مرکزی و نماد اعتماد الکترونیک (اینماد) است. این مجوزها تضمین می‌کنند که زرین پال
+            تحت نظارت‌های قانونی فعالیت می‌کند و از استانداردهای امنیتی بالایی برخوردار است.</h4>
+        <h2 id="method-title">رضایت مشتریان</h2>
+        <h4>زرین پال با داشتن میلیون‌ها کاربر راضی و تجربه سال‌ها فعالیت در حوزه پرداخت‌های آنلاین، یکی از بهترین و قابل
+            اعتمادترین گزینه‌ها برای پرداخت‌های اینترنتی است. ما نیز به انتخاب زرین پال افتخار می‌کنیم و امیدواریم که
+            تجربه خرید شما در [نام فروشگاه شما] لذت‌بخش و مطمئن باشد.</h4>
+    </div>
+    <span id="q_and_answer_link"> <img src="/static/images/blog/q_&_a.png"> <a href="{% url 'q_and_answer_view' %}"> پرسش و پاسخ های متداول </a></span>
+{% endblock %}

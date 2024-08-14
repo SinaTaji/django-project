@@ -1,0 +1,24 @@
+{% extends 'lay_out/layout.html' %}
+{% load render_partial %}
+{% block title %}دسته بندی ها{% endblock %}
+{% block content %}
+    <div class="main-container">
+        <div class="category-section">
+            <h2>دسته بندی ها</h2>
+            <div class=" swiper-container category-slider">
+                <div class=" swiper-wrapper category-container">
+                    {% for category in categories %}
+                        <div class=" swiper-slide category-item">
+                            <a href="{% url 'products_category' category.url_title %}">
+                                <img src="{{ category.image.url }}" alt="{{ category.title }}">
+                                <h3>{{ category.title }}</h3>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% render_partial 'products.views.cars_include' %}
+        {% render_partial 'products.views.brands_include' %}
+    </div>
+{% endblock %}
